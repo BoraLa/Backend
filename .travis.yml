@@ -1,0 +1,15 @@
+language: python
+python:
+- '3.3'
+script:
+- python manage.py makemigrations
+- python manage.py migrate
+deploy:
+  provider: openshift
+  user: bruno.delgado1988@gmail.com
+  password:
+    secure: WWj2oGsqOkU8R2fLmVXlft8VxlmCh/BSNyG8P9OSksKNtf9YmgvuEL3fuHOadSMZDkznJM7aPXAXsSnUwxvpahLVHqnbnsD5j4wcL/b5n36Pr+0xDxADriCr6GQ5jbror1ObNOHog2CE9js6lx28gAgL/fFqmC2L0Txy/J3PYWGE8idg5UtLvqu++4VMpQGTRY6JHXJXptBpLYSL50PepABdUbjkJFULdhh9n/oTHqkKId0O/oc7wGOXspEjg5GgD2+V8UIE6pS6duzwNghf/1IfqXYTyP+dIU26pa4XtAXDA36YIxMISWquygvg3KMAj8aqvt3zTlzkQE3nWKKVd28pePKr7R0DieDH7QXGHCSNJ/B9IWBzq8Vd7nFsP31ZoqzbwOvd9y2Y+Sgdx3lYzO7Bj5ML3Z55NE4UkFbB1Mgstvf4Yhlh7SaE1loobxOPK056pzMFpGfgHOcFl2VY+67p90VzqP2vfd0uDO8FaBxJhFyXuKk30Q0CEwlCIjuCqBH0xjHnb0iGw+CWeS9qXAm1aVTd4dZi67ydAC3WAiAemxVB/lnqBiy78WHvVeyQKiwLytnLyDgcW5uQEm0OKOW25hHBPvqTlcKeX3cSK1cAL+5c1GxUiz12R4LuZMXcoP42qOTEKwI3JEXn6sJEZVFuVEdwDgTlkrbstH+ZFVM=
+  app: backend
+  domain: borala
+  on:
+    repo: BoraLa/Backend
