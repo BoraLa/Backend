@@ -34,5 +34,5 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-    	migrations.RunPython(lancar_atividades)    
+    	#migrations.RunPython(lancar_atividades)    
     ]
