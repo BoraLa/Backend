@@ -1,3 +1,7 @@
 from django.shortcuts import render
+from django.http import JsonResponse
+from Atividades.models import Atividade
 
-# Create your views here.
+def obter_todas_as_atividades(requisicao):
+	atividades = Atividade.objects.all().values('nome', 'descricao')
+	return JsonResponse({'atividades': list(atividades)})

@@ -21,6 +21,6 @@ def index(requisicao):
 	return render(requisicao, "index.html")
 
 urlpatterns = [
-	url(r'^$', index),
+	url(r'^', include('Atividades.urls')),
     url(r'^admin/', include(admin.site.urls)),
 ]
