@@ -17,9 +17,16 @@ def tipos_de_atividade_por_atividade(requisicao, id):
 	tipos = atividade.tipos_de_atividade.all().values('nome')
 	return JsonResponse({'tipos_de_atividade': list(tipos)})
 
+def busca_de_atividades(requisicao):
+	termo = requisicao.GET['termo']
+	atividades_encontradas = \
+		Atividade.objects.filter(nome__icontains=termo) | \
+		Atividade.objects.filter(descricao__icontains=termo) | \
+		Atividade.objects.filter(tipos_de_atividade__nome__icontains=termo)
+	return obter_atividades(atividades_encontradas)
 
 def obter_atividades(dados):
-	campos = ['nome', 'descricao', 'id', 'url', 'endereco', 'categoria__nome']
+	campos = ['nome', 'descricao', 'id', 'url', 'endereco']
 	atividades = list(dados.values(*campos))
 	random.shuffle(atividades)
 	return JsonResponse({'atividades': atividades})
