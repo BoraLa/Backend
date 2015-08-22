@@ -23,10 +23,10 @@ def busca_de_atividades(requisicao):
 		Atividade.objects.filter(nome__icontains=termo) | \
 		Atividade.objects.filter(descricao__icontains=termo) | \
 		Atividade.objects.filter(tipos_de_atividade__nome__icontains=termo)
-	return obter_atividades(atividades_encontradas)
+	return obter_atividades(atividades_encontradas.distinct())
 
 def obter_atividades(dados):
-	campos = ['nome', 'descricao', 'id', 'url', 'endereco']
+	campos = ['nome', 'descricao', 'id', 'url', 'endereco', 'categoria__nome']
 	atividades = list(dados.values(*campos))
 	random.shuffle(atividades)
 	return JsonResponse({'atividades': atividades})
