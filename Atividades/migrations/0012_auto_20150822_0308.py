@@ -2,6 +2,8 @@
 from __future__ import unicode_literals
 from Atividades.models import *
 from django.db import models, migrations
+import random
+from itertools import combinations
 
 def vincular_tipos(*params):
 	corrida = TipoDeAtividade.objects.get(nome="Corrida")
@@ -10,8 +12,10 @@ def vincular_tipos(*params):
 	piquinique = TipoDeAtividade.objects.get(nome="Piquenique")
 	basquete = TipoDeAtividade.objects.get(nome="Basquete")
 
+	combinacoes = list(combinations([corrida, patins, skate, piquinique, basquete], 2))
+
 	for atividade in Atividade.objects.all():
-		atividade.tipos_de_atividade.add(corrida, patins, skate, piquinique, basquete)
+		atividade.tipos_de_atividade.add(*random.choice(combinacoes))
 		atividade.save()
 
 class Migration(migrations.Migration):
