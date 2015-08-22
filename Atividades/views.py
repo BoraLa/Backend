@@ -12,6 +12,12 @@ def atividades_por_categoria(requisicao, categoria):
 	atividades = Atividade.objects.filter(categoria=categoria)
 	return obter_atividades(atividades)
 
+def tipos_de_atividade_por_atividade(requisicao, id):
+	atividade = Atividade.objects.get(id=id)
+	tipos = atividade.tipos_de_atividade.all().values('nome')
+	return JsonResponse({'tipos_de_atividade': list(tipos)})
+
+
 def obter_atividades(dados):
 	campos = ['nome', 'descricao', 'id', 'url', 'endereco', 'categoria__nome']
 	atividades = list(dados.values(*campos))
