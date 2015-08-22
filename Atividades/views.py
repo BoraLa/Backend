@@ -20,10 +20,10 @@ def tipos_de_atividade_por_atividade(requisicao, id):
 def busca_de_atividades(requisicao):
 	termo = requisicao.GET['termo']
 	atividades_encontradas = \
-		Atividade.objects.filter(nome__icontains=termo) | \
-		Atividade.objects.filter(descricao__icontains=termo) | \
-		Atividade.objects.filter(tipos_de_atividade__nome__icontains=termo)
-	return obter_atividades(atividades_encontradas.distinct())
+		Atividade.objects.filter(nome__icontains=termo)
+		#Atividade.objects.filter(descricao__icontains=termo) | \
+		#Atividade.objects.filter(tipos_de_atividade__nome__icontains=termo)
+	return obter_atividades(atividades_encontradas)
 
 def obter_atividades(dados):
 	campos = ['nome', 'descricao', 'id', 'url', 'endereco', 'categoria__nome']
